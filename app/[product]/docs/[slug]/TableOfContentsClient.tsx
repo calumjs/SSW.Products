@@ -30,7 +30,7 @@ function NavigationGroup({
           onClick={() => setIsExpanded(!isExpanded)}
           className="flex items-center w-full text-left"
         >
-          <h2 className="bg-gradient-to-br text-white font-medium">
+          <h2 className="bg-linear-to-br text-white font-medium">
             {navigationGroup.title}
           </h2>
           <FaChevronDown
@@ -96,7 +96,7 @@ export function TableOfContentsClient({
     <>
       <SearchBox
         index={tableOfContentsData.algoliaSearchIndex ?? ""}
-        className=" w-full block"
+        className="w-full hidden md:block"
       />
       {tableOfContentsData.parentNavigationGroup &&
         tableOfContentsData.parentNavigationGroup.map(

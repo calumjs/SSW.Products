@@ -1,6 +1,6 @@
 "use client";
-
 import { GridPattern } from "@/components/magicui/grid-background";
+import Container from "@comps/Container";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
@@ -75,7 +75,7 @@ const GridBackground = () => {
   return (
     <GridPattern
       stroke="2rem"
-      className="[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]"
+      className="mask-[radial-gradient(400px_circle_at_center,white,transparent)]"
       strokeDasharray={"4 2"}
       width={30}
       height={30}
@@ -89,9 +89,9 @@ const FeaturedArticle = ({
 }: RemoveTinaMetadata<FeaturedBlog>) => {
   const { searchTerm } = useBlogSearch();
   return (
-    <>
+    <Container>
       {featuredBlog && !searchTerm && (
-        <section className="container mx-auto">
+        <section className="mx-auto">
           {props.title && (
             <h2
               data-tina-field={tinaField(props, "title")}
@@ -100,18 +100,18 @@ const FeaturedArticle = ({
               {props.title}
             </h2>
           )}
-          <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
+          <div className="bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
             <div className="flex flex-col lg:flex-row">
-              <div className="relative w-full flex-grow md:basis-4/12 aspect-video">
+              <div className="relative w-full grow md:basis-4/12 aspect-video">
                 {/* TODO: Tech debt
                   Tailwind v3 does not not have a built in image mask class https://github.com/SSWConsulting/SSW.YakShaver/issues/1817 */}
-                <div className="w-full h-full lg:[mask-image:linear-gradient(to_right,black,black,transparent)] [mask-image:linear-gradient(black,black,transparent)]">
+                <div className="w-full h-full lg:mask-[linear-gradient(to_right,black,black,transparent)] mask-[linear-gradient(black,black,transparent)]">
                   <GridBackground />
                 </div>
 
                 {featuredBlog.bannerImage && (
                   <div className="inset-0 flex items-center justify-center absolute">
-                    <div className="h-5/6 lg:h-auto lg:w-5/6 rounded-md overflow-hidden [mask-image:linear-gradient(black,black,transparent)] aspect-video relative">
+                    <div className="h-5/6 lg:h-auto lg:w-5/6 rounded-md overflow-hidden mask-[linear-gradient(black,black,transparent)] aspect-video relative">
                       <Image
                         aria-hidden={true}
                         src={featuredBlog.bannerImage}
@@ -154,7 +154,7 @@ const FeaturedArticle = ({
           </div>
         </section>
       )}
-    </>
+    </Container>
   );
 };
 
@@ -234,7 +234,7 @@ const RecentArticles = ({
   });
 
   return (
-    <section className="container mx-auto">
+    <Container>
       {props.title && !searchTerm && (
         <h2
           data-tina-field={tinaField(props, "title")}
@@ -252,13 +252,13 @@ const RecentArticles = ({
             return (
               <div
                 key={index}
-                className="border bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+                className="border bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="h-full flex flex-col flex-grow flex-shrink-0">
+                <div className="h-full flex flex-col grow shrink-0">
                   <div className="relative aspect-video ">
                     <div className="inset-0 absolute align-middle items-center justify-center flex">
                       {edge?.node?.bannerImage && (
-                        <div className="rounded-md [mask-image:linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
+                        <div className="rounded-md mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
                           <Image
                             alt=""
                             fill
@@ -269,11 +269,11 @@ const RecentArticles = ({
                         </div>
                       )}
                     </div>
-                    <div className="w-full h-full [mask-image:linear-gradient(black,black,transparent)]">
+                    <div className="w-full h-full mask-[linear-gradient(black,black,transparent)]">
                       <GridBackground />
                     </div>
                   </div>
-                  <div className="flex-grow flex-shrink-0 gap-3 flex flex-col p-6">
+                  <div className="grow shrink-0 gap-3 flex flex-col p-6">
                     {edge?.node?.category && (
                       <CategoryLabel className="text-sm">
                         {edge?.node?.category}
@@ -322,7 +322,7 @@ const RecentArticles = ({
           </Button>
         )}
       </div>
-    </section>
+    </Container>
   );
 };
 
@@ -336,7 +336,7 @@ const CategoryLabel = ({
   return (
     <div
       className={cn(
-        "bg-ssw-charcoal drop-shadow-sm z-10 w-fit text-white px-3 py-1 rounded-full",
+        "bg-ssw-charcoal drop-shadow-xs z-10 w-fit text-white px-3 py-1 rounded-full",
         className
       )}
     >
@@ -406,8 +406,8 @@ const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
   }, [searchTerm, updateSearchTerm]);
 
   return (
-    <section className=" relative bg-gradient-to-b py-16 bg-[#131313]">
-      <div className="mx-auto container relative z-10">
+    <section className="relative bg-linear-to-b py-16 bg-[#131313]">
+      <Container>
         <div className="max-w-3xl mx-auto text-center mb-12">
           {props.title && (
             <h1
@@ -429,13 +429,15 @@ const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
         </div>
         <div className="relative max-w-xl mx-auto">
           <div className="relative">
+            {/*TODO: remove important https://github.com/tailwindlabs/tailwindcss/discussions/17239*/}
+
             <input
               type="text"
               onChange={(e) => {
                 setSearchTerm(e.target.value);
               }}
               placeholder="Search articles..."
-              className="w-full bg-ssw-charcoal border text-white border-white/20 rounded-lg py-3 px-4 pl-12 placeholder:text-gray-300 focus:outline-none"
+              className="w-full bg-ssw-charcoal placeholder:text-gray-300! border text-white border-white/20 rounded-lg py-3 px-4 pl-12 focus:outline-hidden"
             />
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-300 h-5 w-5" />
           </div>
@@ -457,7 +459,7 @@ const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
             })}
           </div>
         )}
-      </div>
+      </Container>
     </section>
   );
 };

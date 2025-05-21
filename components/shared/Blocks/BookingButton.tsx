@@ -10,6 +10,11 @@ interface BookingButtonProps {
   variant?: ButtonVariant;
   className?: string;
 }
+export const variantMap: Record<ButtonVariant, string> = {
+  solidRed: "bg-ssw-red hover:opacity-80 text-white",
+  solidWhite: "text-black hover:opacity-80 border-1 bg-white",
+  outlinedWhite: "border-1 hover:bg-white/20 border-white text-white",
+};
 
 export const BookingButton = ({
   title,
@@ -21,13 +26,15 @@ export const BookingButton = ({
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+
   return (
     <>
       <button
         onClick={openModal}
         className={cn(
+          variantMap[variant],
           className,
-          `px-5 py-2 ${variant} font-semibold text-center items-center text-white rounded-lg transition-colors hover:bg-white/20 whitespace-nowrap uppercase`
+          `px-5 py-2 font-semibold text-center transition-all items-center text-white rounded-lg whitespace-nowrap uppercase`
         )}
       >
         {title}
@@ -38,7 +45,7 @@ export const BookingButton = ({
           title="jotform"
           src={`https://www.jotform.com/${jotFormId}`}
           width="100%"
-          className="md:p-5 p-4 lg:w-[40rem] lg:h-[50rem] md:w-[30rem] h-[40rem] overflow-hidden"
+          className="md:p-5 p-4 lg:w-160 lg:h-200 md:w-120 h-160 overflow-hidden"
         />
       </Modal>
     </>

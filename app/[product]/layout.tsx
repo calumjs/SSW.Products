@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import "ssw-tinacms-landingkit/dist/style.css";
 import NavBarServer from "../../components/shared/NavBarServer";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
 import "../globals.css";
@@ -40,9 +39,11 @@ export default function RootLayout({
           </Script>
         )}
       </head>
-      <body className={`min-h-screen ${inter.className} bg-[#222222]`}>
-        <NavBarServer product={params.product} />
-        {children}
+      <body className={`min-h-screen ${inter.className} relative bg-[#222222]`}>
+        <div className="overflow-clip">
+          <NavBarServer product={params.product} />
+          {children}
+        </div>
       </body>
     </html>
   );

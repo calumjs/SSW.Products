@@ -49,7 +49,7 @@ const CustomSlider = ({
     <div className="w-full">
       <div className="relative w-full h-2 bg-white/10 rounded-full">
         <div
-          className="absolute h-full bg-gradient-to-r from-[#e34f4f] to-[#D699FB] via-[#FF778E] rounded-full"
+          className="absolute h-full bg-linear-to-r from-[#e34f4f] to-[#D699FB] via-[#FF778E] rounded-full"
           style={{ width: `${percentage}%` }}
         ></div>
         <input
@@ -221,7 +221,7 @@ const EstimatedSavingsContent = ({
           </Tooltip>
         </div>
         <p
-          className={`bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold ${
+          className={`bg-linear-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold ${
             isCustomTier ? "text-xl" : "text-2xl"
           }`}
         >
@@ -238,7 +238,7 @@ const EstimatedSavingsContent = ({
           </Tooltip>
         </div>
         <p
-          className={`bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold ${
+          className={`bg-linear-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold ${
             isCustomTier ? "text-xl" : "text-2xl"
           }`}
         >
@@ -269,7 +269,7 @@ const SliderBoxContent = ({
       <p className="text-white/50 pb-3">
         Adjust the slider to match the average hourly rate of your employees.
       </p>
-      <div className="bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold text-2xl">
+      <div className="bg-linear-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold text-2xl">
         ${hourlyRate} / hour
       </div>
       <CustomSlider
@@ -301,9 +301,9 @@ const CalculatorTierCard = ({
     <button
       className={cn(
         isSelected
-          ? "[background-image:theme(backgroundImage.black-gradient),theme('backgroundImage.pink-gradient')] hover:[background-image:theme(backgroundImage.gray-gradient),theme(backgroundImage.pink-gradient)]"
-          : "bg-black-gradient hover:bg-gray-gradient",
-        "w-full box-border border-transparent border bg-origin-border [background-clip:padding-box,border-box] text-white rounded-xl p-6 flex flex-col gap-2 items-start text-start"
+          ? "border-gradient-pink  "
+          : "border-gradient-transparent hover:[background-image:var(--gradient-gray)]",
+        "w-full box-border hover:[--border-gradient-foreground:var(--gradient-gray)] [--border-gradient-foreground:var(--gradient-black)] text-white rounded-xl p-6 flex flex-col gap-2 items-start text-start"
       )}
       onClick={() => setSelectedTier(index)}
     >

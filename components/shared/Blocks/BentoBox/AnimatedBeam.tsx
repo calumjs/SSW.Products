@@ -1,12 +1,12 @@
 "use client";
 
-import React, { forwardRef, useRef, useMemo, createRef } from "react";
-import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "@/components/magicui/animated-beam";
+import { ShineBorder } from "@/components/magicui/shine-border";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { createRef, forwardRef, useMemo, useRef } from "react";
 import { FaFile, FaImage, FaVideo } from "react-icons/fa";
 import { IoChatbox } from "react-icons/io5";
-import { ShineBorder } from "@/components/magicui/shine-border";
 const icons = {
   FaVideo,
   IoChatbox,
@@ -20,7 +20,7 @@ const OutputPill = forwardRef<HTMLDivElement, { title: string }>(
       <div className="relative inline-flex gap-2 items-center p-1 rounded-3xl top-0 transition-all duration-300 group">
         <div
           ref={ref}
-          className="relative inline-flex gap-2 py-3 lg:py-2 justify-center items-center md:px-4 px-2 rounded-3xl bg-gradient-to-br from-[#CB4542] to-[#7A2C2A] border border-gray-400 text-xs z-30 text-black"
+          className="relative inline-flex gap-2 py-3 lg:py-2 justify-center items-center md:px-4 px-2 rounded-3xl bg-linear-to-br from-[#CB4542] to-[#7A2C2A] border border-gray-400 text-xs z-30 text-black"
         >
           <Image
             src={"/svg/github-mark-white.svg"}
@@ -54,7 +54,7 @@ export const CircleLogo = forwardRef<
       ) : (
         <div className="border border-gray-300 rounded-full absolute inset-0" />
       )}
-      <div className="md:w-20 m-1 md:h-20 h-16 w-16 rounded-full bg-gray-800 flex items-center justify-center bg-gradient-to-tr from-white via-gray-200 to-gray-500">
+      <div className="md:w-20 m-1 md:h-20 h-16 w-16 rounded-full bg-gray-800 flex items-center justify-center bg-linear-to-tr from-white via-gray-200 to-gray-500">
         <Image
           src={media || "/svg/yak-icon-fill.svg"}
           alt="yak"
@@ -78,7 +78,7 @@ const InputBadge = forwardRef<
   return (
     <div ref={ref} className="inline-flex rounded-full z-30">
       <div className="relative inline-flex flex-row items-center gap-1 md:gap-2 lg:gap-4 lg:text-sm text-xs rounded-full bg-[#131313] p-1 pr-2 lg:pr-8 border border-[#e34f4f]/50 shadow-[inset_0_0_12px_rgba(156,163,175,0.25)] w-full">
-        <div className="bg-[#F8F8F8] bg-opacity-10 rounded-full p-1 lg:p-2">
+        <div className="bg-[#F8F8F8]/10 rounded-full p-1 lg:p-2">
           {Icon && <Icon />}
         </div>
         {title}
